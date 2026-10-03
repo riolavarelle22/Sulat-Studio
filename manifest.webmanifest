@@ -1,0 +1,17 @@
+{
+  "name": "Novel Studio — Write worlds. Build stories.",
+  "short_name": "Novel Studio",
+  "description": "Premium installable AI novel-writing app: manuscript, plotting, Story Bible, Lorebook, timeline, Style Studio. Offline-first.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a1410",
+  "theme_color": "#1a1410",
+  "categories": ["productivity", "utilities", "books"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

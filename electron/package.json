@@ -1,0 +1,23 @@
+{
+  "name": "novel-studio-desktop",
+  "version": "1.0.0",
+  "description": "Novel Studio — installable AI novel-writing desktop app (Electron wrapper around the local-first app shell).",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --linux --win --mac",
+    "dist-linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "studio.novel.app",
+    "productName": "Novel Studio",
+    "files": ["main.js", "../index.html", "../styles.css", "../app.js", "../manifest.webmanifest", "../sw.js", "../icon.svg", "../icon-*.png"],
+    "linux": { "target": ["AppImage", "deb"], "category": "Office" },
+    "win": { "target": ["nsis"] },
+    "mac": { "target": ["dmg"] }
+  }
+}

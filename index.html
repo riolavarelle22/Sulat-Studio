@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Novel Studio — Write worlds. Build stories.</title>
+<meta name="description" content="Novel Studio — a premium installable AI novel-writing app. Manuscript, plotting, Story Bible, Lorebook, Timeline, Style Studio. Your books live on your device.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1a1410">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-512.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Novel Studio">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="midnight-library" data-bg="grand-library">
+<div id="bgLayer" aria-hidden="true"><div id="bgArt"></div><div id="bgDim"></div></div>
+
+<!-- SPLASH -->
+<div id="splash" role="dialog" aria-label="Novel Studio opening">
+  <div class="splash-inner">
+    <div class="shelf"><div class="book b1"></div><div class="book b2"></div><div class="book b3"></div><div class="book b4"></div><div class="book b5"></div></div>
+    <div class="openbook"><div class="page left"></div><div class="page right"></div><div class="ink">NOVEL STUDIO</div></div>
+    <h1>NOVEL STUDIO</h1>
+    <p>Write worlds. Build stories.</p>
+    <div class="splash-row"><button id="skipSplash" class="btn ghost">Skip Animation</button><span id="splashLoad">Opening your library…</span></div>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<header id="topbar">
+  <div class="tb-left">
+    <button id="navToggle" class="iconbtn" title="Menu" aria-label="Menu">☰</button>
+    <div class="brand"><span class="brand-mark">❦</span><span class="brand-name">Novel Studio</span><span id="tbNovel" class="tb-novel"></span></div>
+  </div>
+  <div class="tb-center"><span id="tbChapter" class="tb-chapter"></span></div>
+  <div class="tb-right">
+    <button id="btnPalette" class="iconbtn" title="Search & commands (Ctrl+K)">⌕</button>
+    <button id="btnAIQuick" class="iconbtn" title="AI command">✦</button>
+    <select id="modelPick" title="AI profile"></select>
+    <button id="btnKeys" class="iconbtn" title="Connect AI — no key needed to start">🔑</button>
+    <span id="saveState" class="savestate" title="Save state">● Saved</span>
+    <button id="btnFocusTop" class="iconbtn" title="Focus mode">◉</button>
+    <button id="btnInstall" class="btn small hidden" title="Install app">⤓ Install</button>
+    <button id="btnSettingsTop" class="iconbtn" title="Settings">⚙</button>
+  </div>
+</header>
+
+<div id="shell">
+  <!-- SIDEBAR -->
+  <nav id="sidebar" aria-label="Novel Studio sections">
+    <div class="side-group"><button class="navbtn primary" data-go="home">⌂ Home</button></div>
+    <div class="side-group" id="sideNav">
+      <button class="navbtn" data-go="library">📚 Library</button>
+      <button class="navbtn" data-go="write">✒ Write</button>
+      <button class="navbtn" data-go="plan">🗺 Plan</button>
+      <button class="navbtn" data-go="board">🗂 Story Board</button>
+      <button class="navbtn" data-go="storyroom">💬 Story Room</button>
+      <button class="navbtn" data-go="characters">👥 Characters</button>
+      <button class="navbtn" data-go="relationships">🕸 Relationships</button>
+      <button class="navbtn" data-go="locations">📍 Locations</button>
+      <button class="navbtn" data-go="world">🌍 World</button>
+      <button class="navbtn" data-go="lorebook">📖 Lorebook</button>
+      <button class="navbtn" data-go="bible">📜 Story Bible</button>
+      <button class="navbtn" data-go="timeline">⏳ Timeline</button>
+      <button class="navbtn" data-go="research">🔬 Research</button>
+      <button class="navbtn" data-go="references">🖼 References</button>
+      <button class="navbtn" data-go="aitools">🧠 AI Tools</button>
+      <button class="navbtn" data-go="style">🎨 Style Studio</button>
+      <button class="navbtn" data-go="history">🕰 History</button>
+      <button class="navbtn" data-go="trash">🗑 Trash</button>
+      <button class="navbtn" data-go="settings">⚙ Settings</button>
+    </div>
+    <div class="side-foot"><div id="sideNovelCard"></div><button id="btnNewNovelSide" class="btn small full">+ New Novel</button></div>
+  </nav>
+
+  <!-- MAIN -->
+  <main id="main">
+    <section class="view" id="view-home"></section>
+    <section class="view" id="view-library"></section>
+    <section class="view" id="view-write">
+      <div id="writeWrap">
+        <aside id="navigator"><div class="pane-head"><span>Manuscript</span><div><button class="iconbtn" data-act="add-chapter" title="New chapter">+Ch</button><button class="iconbtn" data-act="add-part" title="New part">+Part</button></div></div><div id="navTree"></div></aside>
+        <div id="navResizer" class="resizer"></div>
+        <div id="editorCol">
+          <div id="editorToolbar"></div>
+          <div id="editorMeta"></div>
+          <div id="manuscript" contenteditable="true" spellcheck="true" aria-label="Manuscript editor"></div>
+          <div id="selToolbar" class="hidden"></div>
+          <div id="cmdBox"><input id="cmdInput" placeholder="Tell Novel AI what to do…  (e.g. Continue this chapter slowly for ~1,000 words)"><button id="cmdRun" class="btn">✦ Send</button></div>
+        </div>
+        <div id="aiResizer" class="resizer"></div>
+        <aside id="aiPanel"><div class="pane-head"><span>✦ Novel AI</span><button id="aiCollapse" class="iconbtn">›</button></div><div id="aiTabs"></div><div id="aiBody"></div></aside>
+      </div>
+    </section>
+    <section class="view" id="view-plan"></section>
+    <section class="view" id="view-board"></section>
+    <section class="view" id="view-storyroom"></section>
+    <section class="view" id="view-characters"></section>
+    <section class="view" id="view-relationships"></section>
+    <section class="view" id="view-locations"></section>
+    <section class="view" id="view-world"></section>
+    <section class="view" id="view-lorebook"></section>
+    <section class="view" id="view-bible"></section>
+    <section class="view" id="view-timeline"></section>
+    <section class="view" id="view-research"></section>
+    <section class="view" id="view-references"></section>
+    <section class="view" id="view-aitools"></section>
+    <section class="view" id="view-style"></section>
+    <section class="view" id="view-history"></section>
+    <section class="view" id="view-trash"></section>
+    <section class="view" id="view-settings"></section>
+  </main>
+</div>
+
+<!-- MOBILE NAV -->
+<nav id="mobileNav"><button data-go="write">✒<span>Write</span></button><button data-go="plan">🗺<span>Plan</span></button><button data-go="storyroom">💬<span>AI</span></button><button data-go="board">🗂<span>Story</span></button><button data-go="home">⋯<span>More</span></button></nav>
+<button id="fab" title="AI command">✦</button>
+
+<!-- FOCUS MODE -->
+<div id="focusMode" class="hidden"><div class="focus-top"><span id="focusTitle"></span><span id="focusCount"></span><span id="focusSave">Saved</span><button id="exitFocus" class="btn small">Exit Focus Mode</button></div><div id="focusEditor" contenteditable="true"></div><div class="focus-bar"><button id="focusTypewriter" class="btn small ghost">Typewriter: off</button><button id="focusSound" class="btn small ghost">Sounds: off</button></div></div>
+
+<!-- COMMAND PALETTE -->
+<div id="palette" class="hidden"><input id="paletteInput" placeholder="Search novels, chapters, characters… or type a command"><div id="paletteList"></div></div>
+
+<!-- GENERIC MODAL -->
+<div id="modal" class="hidden"><div id="modalCard"><div id="modalHead"><span id="modalTitle"></span><button id="modalClose" class="iconbtn">✕</button></div><div id="modalBody"></div><div id="modalFoot"></div></div></div>
+
+<!-- AI PREVIEW -->
+<div id="preview" class="hidden"><div id="previewCard"><h3>AI Generation Preview</h3><div class="pv-tabs"><button data-pv="orig" class="pvtab on">Original</button><button data-pv="ai" class="pvtab">AI Version</button><button data-pv="side" class="pvtab">Side-by-Side</button><button data-pv="diff" class="pvtab">Difference</button></div><div id="pvBody"></div><div class="pv-actions"><button id="pvAccept" class="btn">Accept</button><button id="pvInsertAbove" class="btn ghost">Insert Above</button><button id="pvInsertBelow" class="btn ghost">Insert Below</button><button id="pvCopy" class="btn ghost">Copy</button><button id="pvRegen" class="btn ghost">Regenerate</button><button id="pvReject" class="btn ghost">Reject</button></div></div></div>
+
+<div id="toasts"></div>
+<div id="aiStatus" class="hidden"><span id="aiStatusText"></span><button id="aiCancel" class="btn small ghost">Cancel</button></div>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }
+</script>
+</body>
+</html>
