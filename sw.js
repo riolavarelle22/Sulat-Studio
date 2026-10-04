@@ -1,5 +1,5 @@
-/* Novel Studio service worker — offline app shell */
-const CACHE = "novelstudio-v1";
+/* Novel Studio service worker — offline app shell (v2: mobile PWA + local AI + covers) */
+const CACHE = "novelstudio-v2";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./icon.svg"];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));

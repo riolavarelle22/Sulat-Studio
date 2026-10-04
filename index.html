@@ -37,18 +37,23 @@
   </div>
   <div class="tb-center"><span id="tbChapter" class="tb-chapter"></span></div>
   <div class="tb-right">
+    <span class="tb-desktop">
     <button id="btnPalette" class="iconbtn" title="Search & commands (Ctrl+K)">⌕</button>
     <button id="btnAIQuick" class="iconbtn" title="AI command">✦</button>
     <select id="modelPick" title="AI profile"></select>
-    <button id="btnKeys" class="iconbtn" title="Connect AI — no key needed to start">🔑</button>
+    </span>
     <span id="saveState" class="savestate" title="Save state">● Saved</span>
+    <button id="btnKeys" class="iconbtn" title="AI API key — connect cloud AI or use offline">🔑</button>
+    <span class="tb-desktop">
     <button id="btnFocusTop" class="iconbtn" title="Focus mode">◉</button>
     <button id="btnInstall" class="btn small hidden" title="Install app">⤓ Install</button>
+    </span>
     <button id="btnSettingsTop" class="iconbtn" title="Settings">⚙</button>
   </div>
 </header>
 
 <div id="shell">
+<div id="scrim" class="hidden" aria-hidden="true"></div>
   <!-- SIDEBAR -->
   <nav id="sidebar" aria-label="Novel Studio sections">
     <div class="side-group"><button class="navbtn primary" data-go="home">⌂ Home</button></div>
@@ -57,7 +62,7 @@
       <button class="navbtn" data-go="write">✒ Write</button>
       <button class="navbtn" data-go="plan">🗺 Plan</button>
       <button class="navbtn" data-go="board">🗂 Story Board</button>
-      <button class="navbtn" data-go="storyroom">💬 Story Room</button>
+      <button class="navbtn" data-go="storyroom">💬 AI Chat</button>
       <button class="navbtn" data-go="characters">👥 Characters</button>
       <button class="navbtn" data-go="relationships">🕸 Relationships</button>
       <button class="navbtn" data-go="locations">📍 Locations</button>
@@ -116,7 +121,13 @@
 </div>
 
 <!-- MOBILE NAV -->
-<nav id="mobileNav"><button data-go="write">✒<span>Write</span></button><button data-go="plan">🗺<span>Plan</span></button><button data-go="storyroom">💬<span>AI</span></button><button data-go="board">🗂<span>Story</span></button><button data-go="home">⋯<span>More</span></button></nav>
+<nav id="mobileNav" aria-label="Primary">
+  <button data-go="write" aria-label="Write">✒<span>Write</span></button>
+  <button data-go="plan" aria-label="Plan">🗺<span>Plan</span></button>
+  <button data-go="storyroom" aria-label="AI Chat">💬<span>AI Chat</span></button>
+  <button data-go="board" aria-label="Story">🗂<span>Story</span></button>
+  <button data-go="__more" aria-label="More">⋯<span>More</span></button>
+</nav>
 <button id="fab" title="AI command">✦</button>
 
 <!-- FOCUS MODE -->
